@@ -1,9 +1,10 @@
-#define _CRT_SECURE_NO_WARNINGS 1
+
 #pragma once
 #include<iostream>
 using namespace std;
 #include<vector>
 #include<assert.h>
+#define _CRT_SECURE_NO_WARNINGS 1
 template<class T>
 class Less
 {
@@ -22,7 +23,7 @@ public:
 		return left >= right;
 	}
 };
-template<class T,template<class> class Compare = Less> //Ä£°åµÄÄ£°å²ÎÊı
+template<class T,template<class> class Compare = Less> //æ¨¡æ¿çš„æ¨¡æ¿å‚æ•°
 class Heap
 {
 public:
@@ -30,7 +31,7 @@ public:
 	{}
 	Heap(const T arr[], size_t size)
 	{
-		//°ÑarrµÄÊı¾İ±£´æµ½ _heapÖĞ
+		//æŠŠarrçš„æ•°æ®ä¿å­˜åˆ° _heapä¸­
 		//_heap.resize(size);
 		for (size_t idx = 0; idx < size; ++idx)
 		{
@@ -38,15 +39,15 @@ public:
 			_heap.push_back(arr[idx]);
 		}
 
-		// ÕÒµ½×îºóÒ»¸ö·ÇÒ¶×Ó½áµã
+		// æ‰¾åˆ°æœ€åä¸€ä¸ªéå¶å­ç»“ç‚¹
 		size_t root = (size - 2) / 2;
 		for (int idx = root; idx >= 0; idx--)
 		{
-			_AdjustDown(idx, size);//µ÷Õû¶Ñ
+			_AdjustDown(idx, size);//è°ƒæ•´å †
 		}
 	}
 	void Insert(const T data)
-		// ¿Õ ·Ç¿Õ
+		// ç©º éç©º
 	{
 		_heap.push_back(data);
 		size_t size = Size();
@@ -55,7 +56,7 @@ public:
 			_AdJustUp(size);
 		}
 	}
-	void Remove() //°Ñ¶¥¶ËµÄºÍ×îºóÒ»Î»»¥»»£¬È»ºóÉ¾³ı
+	void Remove() //æŠŠé¡¶ç«¯çš„å’Œæœ€åä¸€ä½äº’æ¢ï¼Œç„¶ååˆ é™¤
 	{
 		assert(!Empty());
 		size_t size = _heap.size();
@@ -86,21 +87,21 @@ public:
 	{}
 
 private:
-	// µ÷ÕûĞÂ¶Ñ
-	void _AdjustDown(size_t root, size_t size) //²ÎÊı£º¸ù½ÚµãµÄÏÂ±ê£¬¶ÑµÄ´óĞ¡
+	// è°ƒæ•´æ–°å †
+	void _AdjustDown(size_t root, size_t size) //å‚æ•°ï¼šæ ¹èŠ‚ç‚¹çš„ä¸‹æ ‡ï¼Œå †çš„å¤§å°
 	{
 		size_t parent = root;
-		size_t child = (parent * 2) + 1; // Ä¬ÈÏ×îĞ¡º¢×ÓÎª×óº¢×Ó
+		size_t child = (parent * 2) + 1; // é»˜è®¤æœ€å°å­©å­ä¸ºå·¦å­©å­
 		while (child < size)
 		{
-			//ÕÒµ½×îĞ¡µÄº¢×Ó½áµã,ÅĞ¶Ïchild+1ÊÇ·ñÔ½½ç
+			//æ‰¾åˆ°æœ€å°çš„å­©å­ç»“ç‚¹,åˆ¤æ–­child+1æ˜¯å¦è¶Šç•Œ
 
 			if (child + 1 < size && Compare<T>()(_heap[child + 1], _heap[child]))
 				//if (child +1 < size && _heap[child + 1] < _heap[child])
 			{
 				child = child + 1;
 			}
-			//±È½Ïº¢×ÓºÍË«Ç×½áµã
+			//æ¯”è¾ƒå­©å­å’ŒåŒäº²ç»“ç‚¹
 			if (Compare<T>()(_heap[child], _heap[parent]))
 				//if (_heap[child] < _heap[parent])
 			{
@@ -114,7 +115,7 @@ private:
 			}
 		}
 	}
-	void _AdJustUp(size_t size) // ²åÈë ÏòÉÏµ÷Õû¶Ñ
+	void _AdJustUp(size_t size) // æ’å…¥ å‘ä¸Šè°ƒæ•´å †
 	{
 		size_t parent = (size - 2) / 2;
 		size_t child = size - 1;
@@ -138,7 +139,7 @@ private:
 
 
 /*
-template<class T,class Compare = Less<T>> //Ä£°å²ÎÊı
+template<class T,class Compare = Less<T>> //æ¨¡æ¿å‚æ•°
 class Heap
 {
 public:
@@ -146,7 +147,7 @@ Heap()
 {}
 Heap(const T arr[], size_t size)
 {
-//°ÑarrµÄÊı¾İ±£´æµ½ _heapÖĞ
+//æŠŠarrçš„æ•°æ®ä¿å­˜åˆ° _heapä¸­
 //_heap.resize(size);
 for (size_t idx = 0; idx < size; ++idx)
 {
@@ -154,15 +155,15 @@ for (size_t idx = 0; idx < size; ++idx)
 _heap.push_back(arr[idx]);
 }
 
-// ÕÒµ½×îºóÒ»¸ö·ÇÒ¶×Ó½áµã
+// æ‰¾åˆ°æœ€åä¸€ä¸ªéå¶å­ç»“ç‚¹
 size_t root = (size - 2) / 2;
 for (int idx = root; idx >= 0; idx--)
 {
-_AdjustDown(idx, size);//µ÷Õû¶Ñ
+_AdjustDown(idx, size);//è°ƒæ•´å †
 }
 }
 void Insert(const T data)
-// ¿Õ ·Ç¿Õ
+// ç©º éç©º
 {
 _heap.push_back(data);
 size_t size = Size();
@@ -171,7 +172,7 @@ if (size > 1)
 _AdJustUp(size);
 }
 }
-void Remove() //°Ñ¶¥¶ËµÄºÍ×îºóÒ»Î»»¥»»£¬È»ºóÉ¾³ı
+void Remove() //æŠŠé¡¶ç«¯çš„å’Œæœ€åä¸€ä½äº’æ¢ï¼Œç„¶ååˆ é™¤
 {
 assert(!Empty());
 size_t size = _heap.size();
@@ -198,21 +199,21 @@ return _heap.size();
 {}
 
 private:
-// µ÷ÕûĞÂ¶Ñ
-void _AdjustDown(size_t root,size_t size) //²ÎÊı£º¸ù½ÚµãµÄÏÂ±ê£¬¶ÑµÄ´óĞ¡
+// è°ƒæ•´æ–°å †
+void _AdjustDown(size_t root,size_t size) //å‚æ•°ï¼šæ ¹èŠ‚ç‚¹çš„ä¸‹æ ‡ï¼Œå †çš„å¤§å°
 {
 size_t parent = root;
-size_t child = (parent * 2) + 1; // Ä¬ÈÏ×îĞ¡º¢×ÓÎª×óº¢×Ó
+size_t child = (parent * 2) + 1; // é»˜è®¤æœ€å°å­©å­ä¸ºå·¦å­©å­
 while (child < size)
 {
-//ÕÒµ½×îĞ¡µÄº¢×Ó½áµã,ÅĞ¶Ïchild+1ÊÇ·ñÔ½½ç
+//æ‰¾åˆ°æœ€å°çš„å­©å­ç»“ç‚¹,åˆ¤æ–­child+1æ˜¯å¦è¶Šç•Œ
 
 if (child + 1 < size && Compare()(_heap[child +1], _heap[child]))
 //if (child +1 < size && _heap[child + 1] < _heap[child])
 {
 child = child + 1;
 }
-//±È½Ïº¢×ÓºÍË«Ç×½áµã
+//æ¯”è¾ƒå­©å­å’ŒåŒäº²ç»“ç‚¹
 if (Compare()(_heap[child] , _heap[parent]))
 //if (_heap[child] < _heap[parent])
 {
@@ -226,7 +227,7 @@ break;
 }
 }
 }
-void _AdJustUp(size_t size) // ²åÈë ÏòÉÏµ÷Õû¶Ñ
+void _AdJustUp(size_t size) // æ’å…¥ å‘ä¸Šè°ƒæ•´å †
 {
 size_t parent = (size - 2) / 2;
 size_t child = size - 1;
