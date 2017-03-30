@@ -7,6 +7,7 @@
 #include<assert.h>
 #include"Huffman.h"
 using namespace std;
+
 struct FileInfo
 {
 	FileInfo()
