@@ -25,6 +25,7 @@ public:
 		return left >= right;
 	}
 };
+
 template<class T,template<class> class Compare = Less> //模板的模板参数
 class Heap
 {
