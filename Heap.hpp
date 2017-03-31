@@ -5,6 +5,7 @@
 #include<assert.h>
 using namespace std;
 #define _CRT_SECURE_NO_WARNINGS 1
+
 template<class T>
 class Less
 {
@@ -14,6 +15,7 @@ public:
 		return left <= right;
 	}
 };
+
 template<class T>
 class Greater
 {
